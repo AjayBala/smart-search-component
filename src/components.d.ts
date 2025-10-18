@@ -20,6 +20,8 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface SmartSearch {
+    }
 }
 declare global {
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
@@ -28,8 +30,15 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLSmartSearchElement extends Components.SmartSearch, HTMLStencilElement {
+    }
+    var HTMLSmartSearchElement: {
+        prototype: HTMLSmartSearchElement;
+        new (): HTMLSmartSearchElement;
+    };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "smart-search": HTMLSmartSearchElement;
     }
 }
 declare namespace LocalJSX {
@@ -47,8 +56,11 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface SmartSearch {
+    }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "smart-search": SmartSearch;
     }
 }
 export { LocalJSX as JSX };
@@ -56,6 +68,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "smart-search": LocalJSX.SmartSearch & JSXBase.HTMLAttributes<HTMLSmartSearchElement>;
         }
     }
 }
