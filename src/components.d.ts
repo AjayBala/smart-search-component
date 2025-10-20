@@ -21,6 +21,10 @@ export namespace Components {
         "middle": string;
     }
     interface SmartSearch {
+        /**
+          * @default 'auto'
+         */
+        "theme": 'light' | 'dark' | 'auto';
     }
 }
 declare global {
@@ -57,6 +61,10 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface SmartSearch {
+        /**
+          * @default 'auto'
+         */
+        "theme"?: 'light' | 'dark' | 'auto';
     }
     interface IntrinsicElements {
         "my-component": MyComponent;
