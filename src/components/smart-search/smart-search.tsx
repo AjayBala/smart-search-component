@@ -21,18 +21,31 @@ export class SmartSearch {
     console.log(`Theme changed to: ${newValue}`);
   }
   private hostId = 'smart-search-' + Math.random().toString(36).slice(2, 9);
-
+  private hostEl!: HTMLElement;
+  
   fakeData = Array.from({ length: 20 }, () => ({
     id: faker.number.int({ min: 1000, max: 9999 }),
     name: faker.person.fullName(),
     bank: faker.company.name(),
     account: faker.finance.accountNumber(8),
-    balance: faker.finance.amount({ min: 1000, max: 100000, dec: 2, symbol: '$' })
+    balance: faker.finance.amount({ min: 1000, max: 100000, dec: 2, symbol: '$' }),
   }));
 
   componentWillLoad() {
     this.users = this.fakeData;
     this.filteredUsers = this.fakeData;
+  }
+
+  componentDidLoad() {
+    this.hostEl = (this as any).el;
+  }
+
+  scrollHighlightedIntoView() {
+    const list = this.hostEl.shadowRoot?.querySelector('.results-dropdown');
+    const activeItem = list?.querySelector(`#${this.hostId}-option-${this.highlightedIndex}`);
+    if (activeItem && 'scrollIntoView' in activeItem) {
+      activeItem.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
   }
 
   handleInput = (event: Event) => {
@@ -48,17 +61,11 @@ export class SmartSearch {
 
     this.isLoading = true;
 
-
     setTimeout(() => {
-      this.filteredUsers = this.users.filter((user) => {
+      this.filteredUsers = this.users.filter(user => {
         const normalizedAccount = user.account?.toLowerCase().replace(/\s|-/g, '') || '';
         const normalizedId = user.id.toString();
-        return (
-          user.name.toLowerCase().includes(lower) ||
-          user.bank.toLowerCase().includes(lower) ||
-          normalizedAccount.includes(lower) ||
-          normalizedId.includes(lower)
-        );
+        return user.name.toLowerCase().includes(lower) || user.bank.toLowerCase().includes(lower) || normalizedAccount.includes(lower) || normalizedId.includes(lower);
       });
 
       this.showResults = true;
@@ -80,14 +87,13 @@ export class SmartSearch {
     switch (event.key) {
       case 'ArrowDown':
         event.preventDefault();
-        this.highlightedIndex =
-          (this.highlightedIndex + 1) % this.filteredUsers.length;
+        this.highlightedIndex = (this.highlightedIndex + 1) % this.filteredUsers.length;
+        this.scrollHighlightedIntoView();
         break;
       case 'ArrowUp':
         event.preventDefault();
-        this.highlightedIndex =
-          (this.highlightedIndex - 1 + this.filteredUsers.length) %
-          this.filteredUsers.length;
+        this.highlightedIndex = (this.highlightedIndex - 1 + this.filteredUsers.length) % this.filteredUsers.length;
+        this.scrollHighlightedIntoView();
         break;
       case 'Enter':
         event.preventDefault();
@@ -184,27 +190,17 @@ export class SmartSearch {
             aria-autocomplete="list"
             aria-controls={`${this.hostId}-listbox`}
             aria-expanded={this.showResults ? 'true' : 'false'}
-            aria-activedescendant={
-              this.highlightedIndex >= 0
-                ? `${this.hostId}-option-${this.highlightedIndex}`
-                : undefined
-            }
+            aria-activedescendant={this.highlightedIndex >= 0 ? `${this.hostId}-option-${this.highlightedIndex}` : undefined}
           />
 
           {this.searchTerm && (
-            <button
-              class="clear-btn"
-              onClick={this.clearSearch}
-              aria-label="Clear search"
-            >
+            <button class="clear-btn" onClick={this.clearSearch} aria-label="Clear search">
               ✕
             </button>
           )}
         </div>
 
-        {!this.searchTerm && !this.isLoading && (
-          <div class="search-hint">Start typing to search bank accounts</div>
-        )}
+        {!this.searchTerm && !this.isLoading && <div class="search-hint">Start typing to search bank accounts</div>}
 
         {this.renderDropdown()}
       </div>
