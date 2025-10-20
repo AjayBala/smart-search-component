@@ -1,4 +1,4 @@
-import { Component, h, Prop, State, Watch } from '@stencil/core';
+import { Component, h, Prop, State, Watch, Element } from '@stencil/core';
 import { faker } from '@faker-js/faker';
 
 @Component({
@@ -7,6 +7,7 @@ import { faker } from '@faker-js/faker';
   shadow: true,
 })
 export class SmartSearch {
+  @Element() el: HTMLElement;
   @State() users: Array<{ id: number; name: string; bank?: string; account?: string; balance?: string }> = [];
   @State() filteredUsers: Array<{ id: number; name: string; bank?: string; account?: string; balance?: string }> = [];
   @State() searchTerm: string = '';
@@ -22,7 +23,7 @@ export class SmartSearch {
   }
   private hostId = 'smart-search-' + Math.random().toString(36).slice(2, 9);
   private hostEl!: HTMLElement;
-  
+
   fakeData = Array.from({ length: 20 }, () => ({
     id: faker.number.int({ min: 1000, max: 9999 }),
     name: faker.person.fullName(),

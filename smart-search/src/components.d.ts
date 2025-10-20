@@ -6,20 +6,6 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
-    }
     interface SmartSearch {
         /**
           * @default 'auto'
@@ -28,12 +14,6 @@ export namespace Components {
     }
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
-    }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
-    };
     interface HTMLSmartSearchElement extends Components.SmartSearch, HTMLStencilElement {
     }
     var HTMLSmartSearchElement: {
@@ -41,25 +21,10 @@ declare global {
         new (): HTMLSmartSearchElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
         "smart-search": HTMLSmartSearchElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
-    }
     interface SmartSearch {
         /**
           * @default 'auto'
@@ -67,7 +32,6 @@ declare namespace LocalJSX {
         "theme"?: 'light' | 'dark' | 'auto';
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
         "smart-search": SmartSearch;
     }
 }
@@ -75,7 +39,6 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "smart-search": LocalJSX.SmartSearch & JSXBase.HTMLAttributes<HTMLSmartSearchElement>;
         }
     }
