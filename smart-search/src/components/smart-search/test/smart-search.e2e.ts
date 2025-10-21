@@ -1,7 +1,5 @@
 import { newE2EPage } from '@stencil/core/testing';
-function wait(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+
 describe('smart-search component', () => {
   it('renders properly', async () => {
     const page = await newE2EPage();
