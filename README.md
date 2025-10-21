@@ -16,32 +16,35 @@ A reusable accessible searchable dropdown web component built with **Stencil**.
 ## Quick start
 
 ### Install (dev)
+
 ```bash
 git clone https://github.com/<your-username>/smart-search-component.git
 cd smart-search-component
 npm ci
 
-## 📦 Getting Started
+### 📦 **Getting Started**
 
-> ⚠️ Prerequisites:
+> ⚠️ **Prerequisites**:
 > - Node.js `v20+`
 > - `npm` `v10+` (required for native workspaces support)
 
-### Install dependencies (run from root)
+### **Install dependencies (run from root)**
+
 From the root of the monorepo:
 Installs dependencies for both smart-search (Stencil) and smart-search-react (React) via npm workspaces.
 
 ```bash
 npm install
 
-### Build the Stencil component
+### **Build the Stencil component**
 
 ```bash
 cd smart-search
 npm run build 
 
 
-### React Demo App
+### **React Demo App**
+
 Run from monorepo root or inside smart-search-react/:
 
 ```bash
