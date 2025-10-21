@@ -15,26 +15,44 @@ A reusable accessible searchable dropdown web component built with **Stencil**.
 
 ## Quick start
 
-### Install (dev)
-
-```bash
-git clone https://github.com/<your-username>/smart-search-component.git
-cd smart-search-component
-npm ci
-
-### 📦 **Getting Started**
+## 📦 **Getting Started**
 
 > ⚠️ **Prerequisites**:
 > - Node.js `v20+`
 > - `npm` `v10+` (required for native workspaces support)
 
-### **Install dependencies (run from root)**
 
-From the root of the monorepo:
-Installs dependencies for both smart-search (Stencil) and smart-search-react (React) via npm workspaces.
+---
+
+## ✨ Features
+
+- Lightweight web component (Shadow DOM encapsulated)
+- Keyboard navigation (ArrowUp / ArrowDown / Enter / Escape)
+- Emits `query` event for custom async search logic
+- Emits `itemSelected` event when an item is chosen
+- Themeable via CSS custom properties
+- Unit and E2E tests included
+
+---
+
+## Getting Started
+
+###  Prerequisites
+
+- **Node.js** v20+
+- **npm** v10+ (required for native workspaces support)
+
+---
+
+###  Setup 
+
+Clone the repository and install dependencies:
 
 ```bash
+git clone https://github.com/<your-username>/smart-search-monorepo.git
+cd smart-search-monorepo
 npm install
+
 
 ### **Build the Stencil component**
 
@@ -42,6 +60,13 @@ npm install
 cd smart-search
 npm run build 
 
+
+### **Build React App**
+
+Run inside smart-search-react/:
+
+```bash
+npm i
 
 ### **React Demo App**
 
@@ -51,7 +76,7 @@ Run from monorepo root or inside smart-search-react/:
 npm run dev
 
 
-### Testing
+### **Testing**
 ```bash
 cd smart-search
 npm run test
