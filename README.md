@@ -1,56 +1,80 @@
-# Smart Search Web Component
+# Smart Search Monorepo
 
-A reusable accessible searchable dropdown web component built with **Stencil**.
-
-## Features
-
-- Lightweight web component (shadow DOM)
-- Keyboard navigation (ArrowUp/Down, Enter, Escape)
-- Built-in and pluggable search (emit `query` to provide async results)
-- Emits `itemSelected` event on selection
-- Simple theming via CSS custom properties
-- Unit and E2E tests included
+A reusable, accessible searchable dropdown web component built with **Stencil**, bundled in a monorepo with a **React + Vite demo app**.
 
 ---
 
-## Quick start
+## 📁 Folder Structure
 
-### Install (dev)
+```
+smart-search-monorepo/
+├── smart-search/             ← Stencil component
+└── smart-search-react/       ← React + Vite demo app
+```
+
+---
+
+## 🚀 Getting Started
+
+### 🧩 Prerequisites
+
+- **Node.js** v20+
+- **npm** v10+ (required for native workspaces support)
+
+---
+
+### 🛠️ Install Dependencies (from monorepo root)
+
 ```bash
-git clone https://github.com/<your-username>/smart-search-component.git
-cd smart-search-component
-npm ci
-
-## 📦 Getting Started
-
-> ⚠️ Prerequisites:
-> - Node.js `v20+`
-> - `npm` `v10+` (required for native workspaces support)
-
-### Install dependencies (run from root)
-From the root of the monorepo:
-Installs dependencies for both smart-search (Stencil) and smart-search-react (React) via npm workspaces.
-
-```bash
+git clone https://github.com/<your-username>/smart-search-monorepo.git
+cd smart-search-monorepo
 npm install
+```
 
-### Build the Stencil component
+This installs dependencies for both packages (`smart-search` and `smart-search-react`).
+
+---
+
+### 🏗️ Build the Stencil Component
 
 ```bash
 cd smart-search
-npm run build 
+npm run build
+```
 
+---
 
-### React Demo App
-Run from monorepo root or inside smart-search-react/:
+### ⚛️ Build the React App
+
+Run inside the React app folder:
+
+```bash
+cd ../smart-search-react
+npm install
+```
+
+---
+
+### 💻 Run the React Demo App
+
+Run from **monorepo root** or inside `smart-search-react/`:
 
 ```bash
 npm run dev
+```
 
+Then open [http://localhost:5173](http://localhost:5173) in your browser —  
+your **Smart Search** component should render and work.
 
-### Testing
+---
+
+### 🧪 Testing
+
 ```bash
 cd smart-search
-npm run test
-npm run test:e2e
+npm run test       # Unit tests
+npm run test:e2e   # End-to-end tests
+```
+
+---
 
